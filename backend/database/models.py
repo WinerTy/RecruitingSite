@@ -1,19 +1,64 @@
+from django.conf import settings
 from django.db import models
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.utils.translation import gettext as _
+from django.utils import translation
+
+
+class LangSelector(models.TextChoices):
+    @classmethod
+    def language_choices(cls):
+        return [(lang[0], _(lang[1])) for lang in settings.LANGUAGES]
 
 
 class City(models.Model):
     city_name = models.CharField(
-        max_length=128, verbose_name=_("Название"), unique=True
+        max_length=128, verbose_name=_("Название города"), unique=True
     )
 
     def __str__(self):
         return self.city_name
 
+    @property
+    def translated_city_name(self):
+        current_language = translation.get_language()
+        try:
+            translation_obj = self.translations.get(language_code=current_language)
+            return translation_obj.translation or self.city_name
+        except ObjectDoesNotExist:
+            return self.city_name
+
     class Meta:
         verbose_name = _("Город")
         verbose_name_plural = _("Города")
+
+
+class CityTranslation(models.Model):
+    city = models.ForeignKey(
+        City,
+        on_delete=models.CASCADE,
+        verbose_name=_("Город"),
+        related_name="translations",
+    )
+    translation = models.CharField(
+        verbose_name=_("Перевод"),
+        max_length=128,
+        blank=True,
+        null=True,
+    )
+    language_code = models.CharField(
+        verbose_name=_("Языка"),
+        max_length=2,
+        choices=LangSelector.language_choices(),
+    )
+
+    def __str__(self):
+        return self.city.city_name
+
+    class Meta:
+        unique_together = ("city", "language_code")
+        verbose_name = _("Перевод городов")
+        verbose_name_plural = _("Переводы городов")
 
 
 class BrandStore(models.Model):
@@ -71,6 +116,15 @@ class BrandVacancy(models.Model):
         self.vacancy_count -= count
         self.save()
 
+    @property
+    def translated_vacancy_name(self):
+        current_language = translation.get_language()
+        try:
+            translation_obj = self.translations.get(language_code=current_language)
+            return translation_obj.translation or self.vacancy_name
+        except ObjectDoesNotExist:
+            return self.vacancy_name
+
     class Meta:
         indexes = [
             models.Index(fields=["city"]),
@@ -78,6 +132,24 @@ class BrandVacancy(models.Model):
         ]
         verbose_name = _("Вакансия")
         verbose_name_plural = _("Вакансии")
+
+
+class BrandVacancyTranslation(models.Model):
+    vacancy = models.ForeignKey(
+        BrandVacancy, on_delete=models.CASCADE, related_name="translations"
+    )
+    translation = models.CharField(verbose_name=_("Перевод"), max_length=128)
+    language_code = models.CharField(
+        max_length=2, choices=LangSelector.language_choices(), verbose_name=_("Язык")
+    )
+
+    def __str__(self):
+        return self.vacancy.vacancy_name
+
+    class Meta:
+        unique_together = ("vacancy", "language_code")
+        verbose_name = _("Перевод")
+        verbose_name_plural = _("Перевод")
 
 
 class ClientPersonInfo(models.Model):

@@ -83,9 +83,6 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -105,12 +102,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 LANGUAGE_CODE = "ru"
 
-
 LANGUAGES = [
-    ("ky", _("Kyrgyz")),
-    ("ru", _("Russian")),
-    ("tg", _("Tajik")),
-    ("uz", _("Uzbek")),
+    ("ky", _("Киргизский")),
+    ("ru", _("Русский")),
+    ("tg", _("Таджитский")),
+    ("uz", _("Узбекский")),
 ]
 
 TIME_ZONE = "Asia/Yekaterinburg"
@@ -124,13 +120,16 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, "locale"),
 ]
 
-"""STATIC """
 
+"""
+STATIC
+"""
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
 
 """
 MEDIA SETTINGS
@@ -138,9 +137,6 @@ MEDIA SETTINGS
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -155,3 +151,5 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 BOT_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
 
 ADMIN_TG_ID = os.getenv("ADMIN_TG_ID")
+
+API_VERSION = os.getenv("API_VERSION")
