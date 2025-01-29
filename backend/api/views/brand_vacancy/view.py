@@ -12,3 +12,9 @@ class VacancyViewSet(viewsets.ModelViewSet):
     pagination_class = LargeResultSetPagination
     filter_backends = (DjangoFilterBackend,)
     filterset_class = VacancyFilter
+
+    def get_serializer_context(self):
+        context = super(VacancyViewSet, self).get_serializer_context()
+        header = self.request.headers.get("test")
+        print(header)
+        return context
