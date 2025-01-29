@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 
 from .serializer import CitySerializer
-from database.models import City
+from backend.database.models import City
 
 
 class CityViewSet(ModelViewSet):
