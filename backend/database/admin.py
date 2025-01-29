@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (
-    BrandStore,
+    Site,
     BrandVacancy,
     City,
     ClientPersonInfo,
@@ -27,5 +27,5 @@ class CityAdmin(admin.ModelAdmin):
     inlines = [CitiTranslationInline]
 
 
-admin.site.register(BrandStore)
+admin.site.register(Site)
 admin.site.register(ClientPersonInfo)

@@ -61,17 +61,17 @@ class CityTranslation(models.Model):
         verbose_name_plural = _("Переводы городов")
 
 
-class BrandStore(models.Model):
-    brand_name = models.CharField(
+class Site(models.Model):
+    site_name = models.CharField(
         max_length=128, verbose_name=_("Название магазина"), unique=True
     )
 
     def __str__(self):
-        return self.brand_name
+        return self.site_name
 
     class Meta:
-        verbose_name = _("Брэнд магазина")
-        verbose_name_plural = _("Брэнды Магазинов")
+        verbose_name = _("Сайт магазина")
+        verbose_name_plural = _("Сайты Магазинов")
 
 
 class BrandVacancy(models.Model):
@@ -86,12 +86,12 @@ class BrandVacancy(models.Model):
         verbose_name=_("Город"),
         related_name="vacancies",
     )
-    brand = models.ForeignKey(
-        BrandStore,
+    site = models.ForeignKey(
+        Site,
         on_delete=models.CASCADE,
         blank=False,
         null=False,
-        verbose_name=_("Брэнд магазина"),
+        verbose_name=_("Сайт"),
         related_name="vacancies",
     )
     hourly_rate = models.DecimalField(
@@ -128,7 +128,7 @@ class BrandVacancy(models.Model):
     class Meta:
         indexes = [
             models.Index(fields=["city"]),
-            models.Index(fields=["brand"]),
+            models.Index(fields=["site"]),
         ]
         verbose_name = _("Вакансия")
         verbose_name_plural = _("Вакансии")

@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
 
 from .models import ClientPersonInfo
-from .utils.telegram.send_message import send_message
+from .utils.telegram.send_message import TelegramBotController
 
 
 @receiver(post_save, sender=ClientPersonInfo)
@@ -12,8 +12,8 @@ async def notify_admin_via_telegram(
     sender, instance: ClientPersonInfo, created, **kwargs
 ):
     if created:
-        message: str = f"{instance.id} {instance.phone}"
-        await send_message(message)
+        controller = TelegramBotController()
+        await controller.send_message(obj=instance)
 
 
 @receiver(post_save, sender=ClientPersonInfo)
