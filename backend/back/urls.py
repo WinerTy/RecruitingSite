@@ -34,7 +34,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path("i18n/", include("django.conf.urls.i18n")),
     path("admin/", admin.site.urls),
-    path(f"api/{settings.API_VERSION}", include("api.urls")),
+    path(f"api/{settings.API_VERSION}/", include("api.urls")),
 )
 
 

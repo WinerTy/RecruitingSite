@@ -161,7 +161,7 @@ class ClientPersonInfo(models.Model):
     client_name = models.CharField(
         max_length=128, blank=False, null=False, verbose_name=_("ФИО Клиента")
     )
-    phone = models.CharField(
+    client_phone = models.CharField(
         max_length=21, blank=False, null=False, verbose_name=_("Телефон")
     )
     vacancy = models.ForeignKey(

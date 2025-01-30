@@ -26,7 +26,7 @@ class TelegramBotController:
             f"У вас новая заявка! Ее уникальный номер {instance.id}\n\n"
             f"Данные пользователя:\n"
             f"ФИО: {instance.client_name}\n"
-            f"Телефон: {instance.phone}\n"
+            f"Телефон: {instance.client_phone}\n"
             f""
         )
         return message
