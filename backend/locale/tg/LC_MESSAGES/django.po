@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-30 01:32+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\back\settings.py:106
+msgid "Киргизский"
+msgstr ""
+
+#: .\back\settings.py:107
+msgid "Русский"
+msgstr ""
+
+#: .\back\settings.py:108
+msgid "Таджитский"
+msgstr ""
+
+#: .\back\settings.py:109
+msgid "Узбекский"
+msgstr ""
+
+#: .\database\models.py:16
+msgid "Название города"
+msgstr ""
+
+#: .\database\models.py:32 .\database\models.py:40 .\database\models.py:86
+msgid "Город"
+msgstr ""
+
+#: .\database\models.py:33
+msgid "Города"
+msgstr ""
+
+#: .\database\models.py:44 .\database\models.py:141 .\database\models.py:151
+#: .\database\models.py:152
+msgid "Перевод"
+msgstr ""
+
+#: .\database\models.py:50
+msgid "Языка"
+msgstr ""
+
+#: .\database\models.py:60
+msgid "Перевод городов"
+msgstr ""
+
+#: .\database\models.py:61
+msgid "Переводы городов"
+msgstr ""
+
+#: .\database\models.py:66
+msgid "Название магазина"
+msgstr ""
+
+#: .\database\models.py:73 .\database\models.py:94
+msgid "Сайт магазина"
+msgstr ""
+
+#: .\database\models.py:74
+msgid "Сайты Магазинов"
+msgstr ""
+
+#: .\database\models.py:79
+msgid "Название вакансии"
+msgstr ""
+
+#: .\database\models.py:100
+msgid "Часовая ставка"
+msgstr ""
+
+#: .\database\models.py:105
+msgid "Количество вакансий"
+msgstr ""
+
+#: .\database\models.py:133
+msgid "Вакансия"
+msgstr ""
+
+#: .\database\models.py:134
+msgid "Вакансии"
+msgstr ""
+
+#: .\database\models.py:143
+msgid "Язык"
+msgstr ""
+
+#: .\database\models.py:157
+msgid "Telegram"
+msgstr ""
+
+#: .\database\models.py:158
+msgid "WhatsApp"
+msgstr ""
+
+#: .\database\models.py:159 .\database\models.py:165
+msgid "Телефон"
+msgstr ""
+
+#: .\database\models.py:162
+msgid "ФИО Клиента"
+msgstr ""
+
+#: .\database\models.py:179
+msgid "Предпочитаемый способ связи"
+msgstr ""
+
+#: .\database\models.py:186
+msgid "Логин в Telegram"
+msgstr ""
+
+#: .\database\models.py:187
+msgid "Логин указывается через @"
+msgstr ""
+
+#: .\database\models.py:190
+msgid "Статус заявки"
+msgstr ""
+
+#: .\database\models.py:202
+msgid ""
+"Для выбранного способа связи 'Telegram' необходимо указать имя пользователя."
+msgstr ""
+
+#: .\database\models.py:211
+msgid "Невозможно изменить статус из-за отсутсвия доступных вакансий"
+msgstr ""
