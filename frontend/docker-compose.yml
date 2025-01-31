@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  scooter:
+    image: nuxt-app-scooter
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - SITE=scooter
+    ports:
+      - "3000:3000"
+    environment:
+      - SITE=scooter
+      - PORT=3000
+
+  magnet:
+    image: nuxt-app-magnet
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - SITE=magnet
+    ports:
+      - "3001:3001"
+    environment:
+      - SITE=magnet
+      - PORT=3001

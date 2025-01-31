@@ -18,7 +18,6 @@
     "dev:magnet": "SITE=magnet nuxt dev"
   },
   "dependencies": {
-    
     "vue": "latest"
   },
   "devDependencies": {
