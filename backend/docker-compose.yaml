@@ -1,0 +1,66 @@
+services: # ⬅️ версия больше не нужна
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    networks:
+      - django_network
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - django_network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 30s
+      retries: 3
+
+  backend:
+    build: .
+    command: >
+      bash -c "python manage.py migrate &&
+               python manage.py collectstatic --noinput &&
+               gunicorn back.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    networks:
+      - django_network
+    depends_on:
+      - db
+      - redis
+
+  celery-worker:
+    build: .
+    command: celery -A back worker --loglevel=info
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    networks:
+      - django_network
+    depends_on:
+      - db
+      - redis
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  django_network:
+    driver: bridge
