@@ -1,19 +1,15 @@
 from asgiref.sync import sync_to_async
-from django.db import IntegrityError
+from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.db.models.signals import post_save, pre_save
 
 from .models import ClientPersonInfo
-from .utils.telegram.send_message import TelegramBotController
+from .tasks.telegram.notify_admin import notify_admin_via_telegram
 
 
 @receiver(post_save, sender=ClientPersonInfo)
-async def notify_admin_via_telegram(
-    sender, instance: ClientPersonInfo, created, **kwargs
-):
+def new_client_watcher(sender, instance, created, **kwargs):
     if created:
-        controller = TelegramBotController()
-        await controller.send_message(obj=instance)
+        notify_admin_via_telegram.delay(instance.pk)
 
 
 @receiver(post_save, sender=ClientPersonInfo)

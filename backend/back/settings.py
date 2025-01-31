@@ -1,10 +1,8 @@
 import os
-
 from pathlib import Path
 
-from dotenv import load_dotenv
-
 from django.utils.translation import gettext_lazy as _
+from dotenv import load_dotenv
 
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,7 +144,9 @@ JAZZMIN_SETTINGS = {
     "language_chooser": True,
 }
 
-
+"""
+TELEGRAM
+"""
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 BOT_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
@@ -154,3 +154,31 @@ BOT_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
 ADMIN_TG_ID = os.getenv("ADMIN_TG_ID")
 
 API_VERSION = os.getenv("API_VERSION")
+
+
+"""
+REDIS SETTINGS
+"""
+REDIS_HOST = os.getenv("REDIS_HOST", "127.0.0.1")
+REDIS_PORT = os.getenv("REDIS_PORT", 6379)
+REDIS_DB = os.getenv("REDIS_DB", 0)
+
+
+"""
+CELERY SETTINGS
+"""
+
+CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"
+CELERY_RESULT_BACKEND = f"redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"
+
+
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = TIME_ZONE
+
+
+from .celery import debug_task
+
+
+debug_task.delay()
