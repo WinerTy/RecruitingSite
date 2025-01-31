@@ -1,0 +1,13 @@
+@use '../settings/variables';
+
+@mixin desktope {
+  @media (max-width: variables.$desktope-width) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (min-width: variables.$mobile-width) {
+    @content;
+  }
+}

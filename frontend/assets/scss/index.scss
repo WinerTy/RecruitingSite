@@ -1,0 +1,6 @@
+@use 'settings/index.scss' as settings;
+@use 'mixins/index.scss' as mixins;
+
+h1 {
+  color: var(--primary-color);
+}

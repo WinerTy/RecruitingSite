@@ -18,14 +18,16 @@
     "dev:magnet": "SITE=magnet nuxt dev"
   },
   "dependencies": {
+    
     "vue": "latest"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.1.0",
-    "@nuxt/eslint": "^0.7.6",
+    "@nuxt/eslint": "^1.0.0",
+    "@nuxtjs/i18n": "^9.1.4",
     "@pinia/nuxt": "^0.9.0",
     "@types/node": "^22.12.0",
-    "@unocss/eslint-plugin": "^0.61.5",
+    "@unocss/eslint-plugin": "^65.4.3",
     "eslint": "^9.19.0",
     "eslint-plugin-format": "^1.0.1",
     "nuxt": "^3.15.4",
