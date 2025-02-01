@@ -18,8 +18,53 @@ SECRET_KEY = os.getenv("SECRET")
 DEBUG = os.getenv("DEBUG")
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*", "localhost"]
 
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:8000",
+]
+
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "referer",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-sessionid",
+    "x-requested-with",
+    "access",
+    "refresh",
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:8000",
+]
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 INSTALLED_APPS = [
     "jazzmin",
@@ -69,6 +114,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "back.wsgi.application"
 
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 DATABASES = {
     "default": {
